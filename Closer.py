@@ -9,29 +9,30 @@ MAX_DUPLICATE_COUNT = 5
 links = []
 filename = "Trial01.txt"
 
+
 def readURLs():
-	pyautogui.hotkey('win', '4')
+	pyautogui.hotkey('win', '4')		# Open Google Chrome
 	sleep(SLEEP_TIME)
-	# pyautogui.position() # To read current mouse position
+	# pyautogui.position() 				# To read current mouse position
 	# pyautogui.moveTo(298, 69)
-	pyautogui.hotkey('ctrl', '1')
-	duplicateCount = 0
-	while(duplicateCount < MAX_DUPLICATE_COUNT):
-		pyautogui.click(x=1000, y=70, button='left')
+	pyautogui.hotkey('ctrl', '1')		# Open 1st Tab
+	duplicate_count = 0
+	while duplicate_count < MAX_DUPLICATE_COUNT:
+		pyautogui.click(x=1000, y=70, button='left')		# Click on URL Bar
 		sleep(SLEEP_TIME)
-		pyautogui.hotkey('ctrl', 'a')
+		pyautogui.hotkey('ctrl', 'a')						# Select complete URL
 		sleep(SLEEP_TIME)
-		pyautogui.hotkey('ctrl', 'c')
+		pyautogui.hotkey('ctrl', 'c')						# Copy URL
 		sleep(SLEEP_TIME)
-		link = Tk().clipboard_get()
-		if len(links) > 0 and link in links:
-			duplicateCount += 1
-			# print('Duplicate ' + str(duplicateCount) + ' found: ' + link)
+		link = Tk().clipboard_get()							# Read from Clipboard
+		if len(links) > 0 and link in links:				# Check if the URL has already been saved
+			duplicate_count += 1
+			# print('Duplicate ' + str(duplicate_count) + ' found: ' + link)
 		else:
-			links.append(link)
+			links.append(link)								# Else append the URL to list
 		print(link)
 		sleep(SLEEP_TIME)
-		pyautogui.hotkey('ctrl', 'tab')
+		pyautogui.hotkey('ctrl', 'tab')						# Switch to next tab
 		sleep(SLEEP_TIME)
 	
 def saveToFile():
@@ -41,4 +42,4 @@ def saveToFile():
 
 readURLs()
 saveToFile()
-pyautogui.hotkey('win', 'd')
+pyautogui.hotkey('win', 'd')								# Close all windows: indicates end of script

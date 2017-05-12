@@ -26,7 +26,7 @@ def readURLs():
 		link = Tk().clipboard_get()
 		if len(links) > 0 and link in links:
 			duplicateCount += 1
-			print('Duplicate ' + str(duplicateCount) + ' found: ' + link)
+			# print('Duplicate ' + str(duplicateCount) + ' found: ' + link)
 		else:
 			links.append(link)
 		print(link)
